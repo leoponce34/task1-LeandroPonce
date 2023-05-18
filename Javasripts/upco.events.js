@@ -1,15 +1,25 @@
+const url = "https://mindhub-xj03.onrender.com/api/amazing"
+fetch(url)
+.then(res => res.json())
+.then(data => {
+
+
+
 const contenedorElementos = document.getElementById('card')
 const contenedorCheck = document.getElementById('check')
 const input = document.querySelector('input')
 
 contenedorCheck.addEventListener('change', () => {
-    let arrayFiltrado = filtrarPorCategoria(data.events)
-    pegarTarjetas(arrayFiltrado)
-});
+    let arrayFiltrado1 = filtrarPorTexto(data.events, input.value)
+    let arrayFiltrado2 = filtrarPorCategoria(arrayFiltrado1)
+    pegarTarjetas(arrayFiltrado2)
+})
+
 
 input.addEventListener('keyup',()=>{
-    let arrayFiltrado = filtrarPorTexto(data.events, input.value)
-    pegarTarjetas(arrayFiltrado)
+    let arrayFiltrado1 = filtrarPorTexto(data.events, input.value)
+    let arrayFiltrado2 = filtrarPorCategoria(arrayFiltrado1)
+    pegarTarjetas(arrayFiltrado2)
 })
 
 //llamar funciones
@@ -84,3 +94,6 @@ function filtrarPorCategoria(arrayInfo){
     let arrayFiltrado = arrayInfo.filter(elemento => checkValues.includes(elemento.category))
     return arrayFiltrado
 }
+
+})
+.catch(error => console.log(error))

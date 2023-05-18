@@ -1,3 +1,9 @@
+const url = "https://mindhub-xj03.onrender.com/api/amazing"
+fetch(url)
+.then(res => res.json())
+.then(data => {
+
+
 const contenedorDetails = document.getElementById('contenedorDetails');
 let events = data.events;
 let currentDate = data.currentDate;
@@ -52,3 +58,5 @@ function crearTarjeta_details(evento) {
 }
 contenedorDetails.innerHTML = crearTarjeta_details(events)
 
+})
+.catch(error => console.log(error))
